@@ -2,7 +2,6 @@
     "name": "portfolio-website",
     "version": "1.0.0",
     "description": "A portfolio website",
-    "main": "index.html",
     "scripts": {
       "start": "echo \"Error: no start script specified\" && exit 1"
     },
@@ -14,3 +13,4 @@
     "author": "",
     "license": "ISC"
   }
+
