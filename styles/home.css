@@ -31,7 +31,7 @@ body {
     color: #007bff;
   }
   
-  
+
   ul li a:hover {
     text-decoration: underline;
   }
@@ -41,6 +41,6 @@ body {
     color: white;
     font-style: normal;
     text-align: center;
-    padding: 14px;
+    padding: 10px;
   }
   
