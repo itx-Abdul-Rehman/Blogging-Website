@@ -8,23 +8,50 @@ on:
 jobs:
   linting:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' 
+
       - name: Install dependencies
         run: |
-          npm install -g htmlhint stylelint
+          npm install
+
       - name: Lint HTML files
         run: htmlhint src/**/*.html
+
       - name: Lint CSS files
         run: stylelint styles/**/*.css
 
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+
       - name: Build website using Parcel
-        run: parcel build src/*.html
+        run: |
+          npm install -g parcel  
+          parcel build src/*.html 
+
+      - name: Ensure build success
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "Build failed, dist directory not found!"
+            exit 1
+          fi
