@@ -19,14 +19,13 @@ jobs:
           node-version: '16' 
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
-      - name: Lint HTML files
-        run: htmlhint src/**/*.html
+      - name: Lint HTML files using npx
+        run: npx htmlhint src/**/*.html
 
-      - name: Lint CSS files
-        run: stylelint styles/**/*.css
+      - name: Lint CSS files using npx
+        run: npx stylelint styles/**/*.css
 
   build:
     runs-on: ubuntu-latest
@@ -41,13 +40,13 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
+
+      - name: Install Parcel globally
+        run: npm install -g parcel
 
       - name: Build website using Parcel
-        run: |
-          npm install -g parcel  
-          parcel build src/*.html 
+        run: parcel build src/*.html 
 
       - name: Ensure build success
         run: |
