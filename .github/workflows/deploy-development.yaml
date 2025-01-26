@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+  workflow_dispatch:  
 
 jobs:
   build:
@@ -11,10 +12,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Install dependencies
         run: npm install
+
       - name: Build website using Parcel
         run: parcel build src/*.html
+
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -26,3 +30,14 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
